@@ -34,7 +34,7 @@
                                         in</button>
                                 </div>
                                 <hr class="my-4">
-                                <div class="text-center pt-3">Don't Have Account? <a href="register">Register
+                                <div class="text-center pt-3">Don't Have Account? <a href="{{ url('/register') }}">Register
                                         Here</a></div>
                             </form>
                         </div>

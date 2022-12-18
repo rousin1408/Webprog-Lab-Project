@@ -62,7 +62,7 @@
                                         up</button>
                                 </div>
                                 <hr class="my-4">
-                                <div class="text-center pt-3">Have Account? <a href="#">Login
+                                <div class="text-center pt-3">Have Account? <a href="{{ url('/') }}">Login
                                         Here</a></div>
                             </form>
                         </div>

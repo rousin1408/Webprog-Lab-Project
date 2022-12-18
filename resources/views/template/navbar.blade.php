@@ -17,10 +17,10 @@
         <div class="navbar-nav ml-auto" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="/">Login</a>
+                    <a class="nav-link text-light" aria-current="page" href="{{ url('/') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="/">
+                    <a class="nav-link text-light" aria-current="page" href="{{ url('/register') }}">
                         Register
                     </a>
 

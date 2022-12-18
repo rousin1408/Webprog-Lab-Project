@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('login');
 });
+Route::get('/register', function () {
+    return view('register');
+});
 // Route::get('/', [\App\Http\Controllers\LoginController::class], 'login');
 // Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'register']);
