@@ -21,5 +21,4 @@ Route::get('/', function () {
 Route::get('/register', function () {
     return view('register');
 });
-// Route::get('/', [\App\Http\Controllers\LoginController::class], 'login');
-// Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'register']);
+
