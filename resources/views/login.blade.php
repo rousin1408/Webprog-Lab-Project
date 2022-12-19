@@ -9,15 +9,25 @@
                     <div class="card border-0 shadow rounded-3 my-5">
                         <div class="card-body p-4 p-sm-5">
                             <h3 class="card-title text-center mb-5 fs-5">Sign In</h3>
-                            <form>
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{ url('/login') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com">
+                                        placeholder="name@example.com" name="Email" value="{{ old('Email') }}">
                                     <label for="floatingInput" style="color:black">Email address</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                                        name="Password"value="{{ old('Password') }}">
                                     <label for="floatingPassword" style="color:black">Password</label>
                                 </div>
 
