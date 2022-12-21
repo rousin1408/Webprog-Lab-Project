@@ -18,15 +18,11 @@ class CategorySeeder extends Seeder
     public function run()
     {
 
-        Category::create([
+        DB::table('category')->insert([
             'name' => 'Beauty',
-            'created_at' => Carbon::now()->format('Y:m:d H:m:s'),
-            'updated_at' => Carbon::now()->format('Y:m:d H:m:s')
         ]);
-        Category::create([
+        DB::table('category')->insert([
             'name' => 'Camera',
-            'created_at' => Carbon::now()->format('Y:m:d H:m:s'),
-            'updated_at' => Carbon::now()->format('Y:m:d H:m:s')
         ]);
     }
 }

@@ -18,18 +18,26 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{ url('/login') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ url('/register-login') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-3">
-                                    <input type="email" class="form-control" id="floatingInput"
-                                        placeholder="name@example.com" name="Email" value="{{ old('Email') }}">
-                                    <label for="floatingInput" style="color:black">Email address</label>
+                                    <input type="email" class="form-control" id="floatingInput" name="email"
+                                        value="{{ old('email') }}" placeholder="name@example.com">
+                                    <label for="floatingInput" style="color:black">Email</label>
+                                    @if ($errors->has('email'))
+                                        <span class="text-danger">{{ $errors->first('email') }}</span>
+                                    @endif
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
-                                        name="Password"value="{{ old('Password') }}">
-                                    <label for="floatingPassword" style="color:black">Password</label>
+                                    <input type="password" class="form-control" id="passwords"
+                                        value="{{ old('passwords') }}" name="passwords" placeholder="Password">
+                                    <label for="pass" style="color:black">Password</label>
+
+                                    @if ($errors->has('passwords'))
+                                        <span class="text-danger">{{ $errors->first('passwords') }}</span>
+                                    @endif
                                 </div>
+
 
                                 <div class="form-check mb-3">
                                     <input class="form-check-input" type="checkbox" value=""

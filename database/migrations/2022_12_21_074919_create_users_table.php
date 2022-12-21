@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('gender');
             $table->date('date_of_birth');
-            $table->string('country');
+            $table->foreignId('country_id')->references('id')->on('countries')->onUpdate('cascade')->onDelete('cascade');
             $table->string('role');
             $table->rememberToken();
             $table->timestamps();

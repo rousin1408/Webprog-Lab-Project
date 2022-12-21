@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Carbon\Carbon;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -17,17 +16,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-
-        User::create([
+        DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@admin.com',
             'password' => Hash::make('admin'),
             'gender' => 'male',
-            'date_of_birth' => Carbon::parse('2002-08-14'),
-            'country'=>'Indonesia',
+            'date_of_birth' => Carbon::parse('1999-01-01'),
+            'country_id' => 1,
             'role' => 'admin',
-            'created_at' => Carbon::now()->format('Y:m:d H:m:s'),
-            'updated_at' => Carbon::now()->format('Y:m:d H:m:s'),
         ]);
     }
 }

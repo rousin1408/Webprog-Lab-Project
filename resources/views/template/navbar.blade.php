@@ -4,10 +4,18 @@
                 <h1>Barbatos Shop</h1>
             </b> </a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item ">
-                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown"
-                    aria-expanded="false">Category</a>
-
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" style="color: white">
+                    Category
+                </a>
+                <ul class="dropdown-menu">
+                    @foreach ($category as $category)
+                        <li><a class="dropdown-item"
+                                href="{{ url('category', ['name' => $category->name]) }}">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
+                </ul>
             </li>
         </ul>
 
