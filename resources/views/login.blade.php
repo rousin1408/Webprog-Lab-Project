@@ -9,20 +9,12 @@
                     <div class="card border-0 shadow rounded-3 my-5">
                         <div class="card-body p-4 p-sm-5">
                             <h3 class="card-title text-center mb-5 fs-5">Sign In</h3>
-                            @if (count($errors) > 0)
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
-                            <form action="{{ url('/register-login') }}" method="POST">
+                            <form action="{{ url('/login-validation') }}" method="POST">
                                 @csrf
                                 <div class="form-floating mb-3">
                                     <input type="email" class="form-control" id="floatingInput" name="email"
-                                        value="{{ old('email') }}" placeholder="name@example.com">
+                                        value="{{ Cookie::get('username') ? Cookie::get('username') : old('email') }}"
+                                        placeholder="name@example.com" required>
                                     <label for="floatingInput" style="color:black">Email</label>
                                     @if ($errors->has('email'))
                                         <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -30,7 +22,8 @@
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="password" class="form-control" id="passwords"
-                                        value="{{ old('passwords') }}" name="passwords" placeholder="Password">
+                                        value="{{ Cookie::get('password') ? Cookie::get('password') : '' }}"
+                                        name="passwords" placeholder="Password" required>
                                     <label for="pass" style="color:black">Password</label>
 
                                     @if ($errors->has('passwords'))

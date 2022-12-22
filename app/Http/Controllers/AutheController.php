@@ -4,11 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
 class AutheController extends Controller
@@ -18,6 +22,7 @@ class AutheController extends Controller
         $category = Category::all();
         return view('login', ['category' => $category]);
     }
+
     public function register()
     {
         $countries = Country::all();
@@ -48,16 +53,34 @@ class AutheController extends Controller
         ]);
         return redirect('login');
     }
-    public function validationlogin(Request $request){
-        $request->validate([
+    public function validationlogin(Request $request)
+    {
+
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email|exists:users,email',
             'password' => 'required',
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        $remmeberMe = true;
+        if ($request->remmeberMe == null) {
+            $remmeberMe = false;
+        }
+        $cred = $request->only('email', 'password');
+        if (Auth::attempt($cred, $remmeberMe)) {
+            if ($remmeberMe == true) {
+                Cookie::queue('last_logged', $request->email, 60);
+            }
+            return redirect()->route('home');
+        }
+        return redirect()->back()->withErrors('Invalid credentials');
+    }
+    public function home()
+    {
+        $category = Category::all();
 
-
-
-        $errors = new MessageBag(['password' => ['Wrong Password']]);
-
-        return Redirect::back()->withErrors($errors);
+        $product = Product::take(4)->get();
+        return view('home', ['category' => $category], ['product' => $product]);
     }
 }

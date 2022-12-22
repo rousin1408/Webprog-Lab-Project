@@ -16,18 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-// Route::get('/register', function () {
-//     return view('register');
-// });
-// Route::get('/login', function () {
-//     return view('login');
-// });
-// Route::get('/register', [AutheController::class, 'regis']);
+
+Route::get('/', [AutheController::class, 'home']);
+// Route::get('/{id}', [AutheController::class, 'home']);
+
 Route::get('/register', [AutheController::class, 'register']);
 Route::get('/login', [AutheController::class, 'login']);
 Route::post('/register-validation', [AutheController::class, 'validationregistration']);
 Route::post('/login-validation', [AutheController::class, 'validationlogin']);
-// Route::post('/login', [LoginController::class, 'login']);
