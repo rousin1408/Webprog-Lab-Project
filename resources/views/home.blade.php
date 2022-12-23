@@ -28,7 +28,8 @@
             <div class="row">
                 @foreach ($product as $product)
                     <div class="col-sm-3" style="padding-bottom:100px;">
-                        <a href="http://">
+                        {{-- a href buat klik detail dari cardnya --}}
+                        <a href="http://"> {{-- redirect ke halaman detail produk --}}
                             <div class="thumb-wrapper" style="background-color: #9B8983; ">
 
                                 <div class="img-box">
