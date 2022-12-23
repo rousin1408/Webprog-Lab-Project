@@ -28,21 +28,21 @@
             <div class="row">
                 @foreach ($product as $product)
                     <div class="col-sm-3" style="padding-bottom:100px;">
+                        <a href="http://">
+                            <div class="thumb-wrapper" style="background-color: #9B8983; ">
 
-                        <div class="thumb-wrapper" style="background-color: #9B8983; ">
+                                <div class="img-box">
+                                    <img src="{{ \Illuminate\Support\Facades\URL::asset('image/beauty/' . $product->photo) }}"
+                                        class="img-fluid" alt="">
+                                </div>
+                                <div class="thumb-content">
+                                    <h4>Apple iPad</h4>
 
-                            <div class="img-box">
-                                <img src="{{ \Illuminate\Support\Facades\URL::asset('image/beauty/' . $product->photo) }}"
-                                    class="img-fluid" alt="">
+                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b></p>
+
+                                </div>
                             </div>
-                            <div class="thumb-content">
-                                <h4>Apple iPad</h4>
-
-                                <p class="item-price"><strike>$400.00</strike> <b>$369.00</b></p>
-
-                            </div>
-                        </div>
-
+                        </a>
                     </div>
                 @endforeach
 
