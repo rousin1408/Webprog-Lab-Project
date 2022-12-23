@@ -13,17 +13,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <body style="background-color: #795548">
-
-
+        {{-- search --}}
         <div class="container">
             <div class="input-group p-5" style="">
                 <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
                     aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
+                <button type="button" class="btn btn-outline-secondary" style="border-color:white">
+                    <i class="fa fa-search" style="color: white"></i>
+                </button>
             </div>
         </div>
-
-
 
         <div class="container mydiv p-5">
 

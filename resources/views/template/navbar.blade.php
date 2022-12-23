@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg native mb-3" style="background-color: #5D4037; ">
+<nav class="navbar navbar-expand-lg native mb-3 shadow-sm" style="background-color: #5D4037; ">
     {{-- changed max width for navbar --}}
     <div class="container-fluid" class="color:white!important;" style="max-width: 1140px">
         <a class="navbar-brand logo text-light" href="/">

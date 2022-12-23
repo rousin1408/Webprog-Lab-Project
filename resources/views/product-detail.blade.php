@@ -13,8 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <body style="background-color: #795548">
-
-        <div class="container p-4" style="color: white">
+        <div class="container p-4 pb-5 shadow" style="color: white">
             <div class="row mb-3">
                 <div class="col">
                     {{-- nama --}}
@@ -43,32 +42,27 @@
                 </div>
 
                 <div class="col">
-                    <div class="container pt-5 pb-5 shadow-lg" style="background-color:#795548">
+                    <div class="container pt-5 pb-5 shadow" style="background-color:#795548">
                         {{-- harga --}}
-                    <h4 class="mb-4">
-                        <b>Price: Rp25.000</b>
-                    </h4>
-                    {{-- button qty --}}
-                    <form action="">
-
-                        <div class="input-group mb-3">
-                            <h6 class="mr-3">Quantity:</h6>
-                            {{-- button minus --}}
-                            <button class="btn btn-sm btn-outline-secondary" type="button" style="color: white; background-color:#757575">
-                                -
-                            </button>
-                            {{-- text quantity --}}
-                            <input type="text" class="form-control  form-control-sm" placeholder="0" aria-label="Example text with two button addons" style="text-align: center">
-                            {{-- button plus --}}
-                            <button class="btn btn-sm btn-outline-secondary" type="button" style="background-color:#757575; color:white">
-                                +
-                            </button>
-                        </div>
-                        <div class="input-group">
-                            {{-- button submit --}}
-                            <button type="submit" class="btn btn-primary mb-3 fw-bold shadow" style="width: 100%; background-color:#757575; border:none">Add to cart</button>
-                        </div>
-                    </form>
+                        <h4 class="mb-4">
+                            <b>Price: Rp25.000</b>
+                        </h4>
+                        {{-- button qty --}}
+                        <form action="">
+                            <div class="input-group mb-3">
+                                <h6 class="mr-3">Quantity:</h6>
+                                {{-- button minus --}}
+                                <button class="btn btn-sm btn-outline-secondary" type="button" style="color: white; background-color:#757575">-</button>
+                                {{-- text quantity --}}
+                                <input type="text" class="form-control  form-control-sm" placeholder="0" aria-label="Example text with two button addons" style="text-align: center">
+                                {{-- button plus --}}
+                                <button class="btn btn-sm btn-outline-secondary" type="button" style="background-color:#757575; color:white">+</button>
+                            </div>
+                            <div class="input-group">
+                                {{-- button submit --}}
+                                <button type="submit" class="btn btn-primary mb-3 fw-bold shadow" style="width: 100%; background-color:#757575; border:none">Add to cart</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
 
