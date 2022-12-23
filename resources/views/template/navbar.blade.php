@@ -1,8 +1,9 @@
 <nav class="navbar navbar-expand-lg native mb-3" style="background-color: #5D4037; ">
-    <div class="container-fluid" class="color:white!important;">
-        <a class="navbar-brand logo text-light" href="/"><b>
-                <h1>Barbatos Shop</h1>
-            </b> </a>
+    {{-- changed max width for navbar --}}
+    <div class="container-fluid" class="color:white!important;" style="max-width: 1140px">
+        <a class="navbar-brand logo text-light" href="/">
+            <b><h1>Barbatos Shop</h1></b>
+        </a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

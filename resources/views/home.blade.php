@@ -15,16 +15,18 @@
     <body style="background-color: #795548">
 
 
-
-        <div class="input-group " style="padding: 100px; background-color:#795548">
-            <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
-                aria-describedby="search-addon" />
-            <button type="button" class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
+        <div class="container">
+            <div class="input-group p-5" style="background-color:#795548;">
+                <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
+                    aria-describedby="search-addon" />
+                <button type="button" class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
+            </div>
         </div>
 
 
+
         <div class="container mydiv">
-            <h2><b>Beauty</b></h2>
+            <h2><b>Beauty</b></h2> <a href="#">View All</a>
             <div class="row">
                 @foreach ($product as $product)
                     <div class="col-sm-3" style="padding-bottom:100px;">
