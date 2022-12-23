@@ -35,11 +35,9 @@
                 <span style="font-weight: normal"><a href="#">View All</a></span>
             </div>
 
-            <div class="row pb-5" style="border-bottom: 1px solid white;overflow-x: scroll;
-            scrollbar-color: rebeccapurple green;
-            scrollbar-width: thin;">
+            <div class="row pb-5" style="border-bottom: 1px solid white">
                 @foreach ($product as $product)
-                    <div class="col-sm-3" style="">
+                    <div class="col-sm-3 mb-4" style="">
                         {{-- a href buat klik detail dari cardnya --}}
                         <a href="http://"> {{-- redirect ke halaman detail produk --}}
                             <div class="thumb-wrapper" style="background-color: #9B8983; ">
