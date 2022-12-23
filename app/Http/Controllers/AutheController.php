@@ -83,4 +83,13 @@ class AutheController extends Controller
         $product = Product::take(7)->get();
         return view('home', ['category' => $category], ['product' => $product]);
     }
+
+    // product detail
+    public function productDetail()
+    {
+        $category = Category::all();
+
+        $product = Product::take(7)->get();
+        return view('product-detail', ['category' => $category], ['product' => $product]);
+    }
 }

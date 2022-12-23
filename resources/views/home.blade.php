@@ -39,7 +39,7 @@
                 @foreach ($product as $product)
                     <div class="col-sm-3 mb-4" style="">
                         {{-- a href buat klik detail dari cardnya --}}
-                        <a href="http://"> {{-- redirect ke halaman detail produk --}}
+                        <a href="product-detail"> {{-- redirect ke halaman detail produk --}}
                             <div class="thumb-wrapper" style="background-color: #9B8983; ">
 
                                 <div class="img-box">
