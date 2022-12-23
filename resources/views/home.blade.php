@@ -16,7 +16,7 @@
 
 
         <div class="container">
-            <div class="input-group p-5" style="background-color:#795548;">
+            <div class="input-group p-5" style="">
                 <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
                     aria-describedby="search-addon" />
                 <button type="button" class="btn btn-outline-primary"><i class="fa fa-search"></i></button>
@@ -25,11 +25,21 @@
 
 
 
-        <div class="container mydiv">
-            <h2><b>Beauty</b></h2> <a href="#">View All</a>
-            <div class="row">
+        <div class="container mydiv p-5">
+
+            {{-- div buat nama category dan link untuk view all --}}
+            <div class="mb-4" style="border">
+                <h2>
+                    <b>Beauty</b>
+                </h2>
+                <span style="font-weight: normal"><a href="#">View All</a></span>
+            </div>
+
+            <div class="row pb-5" style="border-bottom: 1px solid white;overflow-x: scroll;
+            scrollbar-color: rebeccapurple green;
+            scrollbar-width: thin;">
                 @foreach ($product as $product)
-                    <div class="col-sm-3" style="padding-bottom:100px;">
+                    <div class="col-sm-3" style="">
                         {{-- a href buat klik detail dari cardnya --}}
                         <a href="http://"> {{-- redirect ke halaman detail produk --}}
                             <div class="thumb-wrapper" style="background-color: #9B8983; ">

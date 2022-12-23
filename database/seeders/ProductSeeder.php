@@ -15,8 +15,10 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
+        // kategori beauty
+        // id nya dikomen soalnya udah auto increment
         DB::table('product')->insert([
-            'id' => 1,
+            // 'id' => 1,
             'category_id' => 1,
             'name' => 'lorem',
             'category' => 'Beauty',
@@ -25,7 +27,7 @@ class ProductSeeder extends Seeder
             'photo' => 'beauty1.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 2,
+            // 'id' => 2,
             'category_id' => 1,
             'name' => 'lorem',
             'category' => 'Beauty',
@@ -34,7 +36,7 @@ class ProductSeeder extends Seeder
             'photo' => 'beauty2.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 3,
+            // 'id' => 3,
             'category_id' => 1,
             'name' => 'lorem',
             'category' => 'Beauty',
@@ -43,7 +45,7 @@ class ProductSeeder extends Seeder
             'photo' => 'beauty3.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 4,
+            // 'id' => 4,
             'category_id' => 1,
             'name' => 'lorem',
             'category' => 'Beauty',
@@ -52,7 +54,7 @@ class ProductSeeder extends Seeder
             'photo' => 'beauty4.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 5,
+            // 'id' => 5,
             'category_id' => 1,
             'name' => 'lorem',
             'category' => 'Beauty',
@@ -62,7 +64,37 @@ class ProductSeeder extends Seeder
         ]);
 
         DB::table('product')->insert([
-            'id' => 6,
+            // 'id' => 6,
+            'category_id' => 1,
+            'name' => 'lorem',
+            'category' => 'Beauty',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'beauty6.jpg',
+        ]);
+        DB::table('product')->insert([
+            // 'id' => 7,
+            'category_id' => 1,
+            'name' => 'lorem',
+            'category' => 'Beauty',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'beauty7.jpg',
+        ]);
+        DB::table('product')->insert([
+            // 'id' => 8,
+            'category_id' => 1,
+            'name' => 'lorem',
+            'category' => 'Beauty',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'beauty8.jpg',
+        ]);
+
+        // kategori kamera
+
+        DB::table('product')->insert([
+            // 'id' => 9,
             'category_id' => 2,
             'name' => 'lorem',
             'category' => 'Camera',
@@ -71,7 +103,7 @@ class ProductSeeder extends Seeder
             'photo' => 'camera1.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 7,
+            // 'id' => 7,
             'category_id' => 2,
             'name' => 'lorem',
             'category' => 'Camera',
@@ -80,7 +112,7 @@ class ProductSeeder extends Seeder
             'photo' => 'camera2.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 8,
+            // 'id' => 8,
             'category_id' => 2,
             'name' => 'lorem',
             'category' => 'Camera',
@@ -89,7 +121,7 @@ class ProductSeeder extends Seeder
             'photo' => 'camera3.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 9,
+            // 'id' => 9,
             'category_id' => 2,
             'name' => 'lorem',
             'category' => 'Camera',
@@ -98,7 +130,7 @@ class ProductSeeder extends Seeder
             'photo' => 'camera4.jpg',
         ]);
         DB::table('product')->insert([
-            'id' => 10,
+            // 'id' => 10,
             'category_id' => 2,
             'name' => 'lorem',
             'category' => 'Camera',
@@ -106,5 +138,35 @@ class ProductSeeder extends Seeder
             'price' => '20.000',
             'photo' => 'camera5.jpg',
         ]);
+        DB::table('product')->insert([
+            // 'id' => 10,
+            'category_id' => 2,
+            'name' => 'lorem',
+            'category' => 'Camera',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'camera6.jpg',
+        ]);
+        DB::table('product')->insert([
+            // 'id' => 10,
+            'category_id' => 2,
+            'name' => 'lorem',
+            'category' => 'Camera',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'camera7.jpg',
+        ]);
+        DB::table('product')->insert([
+            // 'id' => 10,
+            'category_id' => 2,
+            'name' => 'lorem',
+            'category' => 'Camera',
+            'detail' => 'lorem',
+            'price' => '20.000',
+            'photo' => 'camera8.jpg',
+        ]);
+
+
+
     }
 }

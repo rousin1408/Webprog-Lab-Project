@@ -80,7 +80,7 @@ class AutheController extends Controller
     {
         $category = Category::all();
 
-        $product = Product::take(4)->get();
+        $product = Product::take(7)->get();
         return view('home', ['category' => $category], ['product' => $product]);
     }
 }
