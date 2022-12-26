@@ -23,7 +23,11 @@ Route::get('/', [AutheController::class, 'home']);
 // route product detail
 Route::get('/product-detail', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
+
+// register
 Route::get('/register', [AutheController::class, 'register']);
+
+// login
 Route::get('/login', [AutheController::class, 'login']);
 Route::post('/register-validation', [AutheController::class, 'validationregistration']);
 Route::post('/login-validation', [AutheController::class, 'validationlogin']);
