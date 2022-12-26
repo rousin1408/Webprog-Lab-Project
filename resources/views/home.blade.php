@@ -3,8 +3,6 @@
 @section('page_name', 'home')
 @section('content')
 
-
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -23,9 +21,9 @@
                 </button>
             </div>
         </div>
+        {{-- start looping category --}}
         @foreach ($category as $c)
             <div class="container mydiv p-5">
-
                 {{-- div buat nama category dan link untuk view all --}}
                 <div class="mb-4" style="border">
                     <h2>
@@ -35,41 +33,35 @@
                 </div>
 
                 <div class="row pb-5" style="border-bottom: 1px solid white">
+                    {{-- start looping product --}}
                     @foreach ($product as $p)
+                        {{-- kalau produk berasal dari category saat ini --}}
                         @if ($c->id == $p->category_id)
                             <div class="col-sm-3 mb-4" style="">
                                 {{-- a href buat klik detail dari cardnya --}}
                                 <a href="product-detail"> {{-- redirect ke halaman detail produk --}}
                                     <div class="thumb-wrapper" style="background-color: #9B8983; ">
-
+                                        {{-- foto --}}
                                         <div class="img-box">
                                             <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}"
                                                 class="img-fluid" alt="">
                                         </div>
                                         <div class="thumb-content">
+                                            {{-- nama --}}
                                             <h4>{{ $p->name }}</h4>
-
+                                            {{-- harga --}}
                                             <p class="item-price">IDR{{ $p->price }}</p>
-
                                         </div>
                                     </div>
                                 </a>
                             </div>
                         @endif
                     @endforeach
-
-
-
+                    {{-- end looping product --}}
                 </div>
             </div>
-
-
-            </div>
         @endforeach
-        </div>
-
-
-
+        {{-- end looping category --}}
 
         {{-- <div class="container mydiv">
             <h2><b>Camera</b></h2>

@@ -27,7 +27,7 @@
                 {{-- foto --}}
                 <div class="col-4">
                     <div class="img-box" style="width: 100%;">
-                        <img src="/image/beauty/beauty1.jpg"
+                        <img src="/image/   beauty1.jpg"
                             class="img-fluid" alt="" style="border-radius: 15px">
                     </div>
                 </div>

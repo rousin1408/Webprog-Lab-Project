@@ -114,7 +114,8 @@ class AutheController extends Controller
     public function manageProduct()
     {
         $category = Category::all();
-        $product = Product::take(4)->get();
+        $product = Product::all();
+        // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
     }
 }
