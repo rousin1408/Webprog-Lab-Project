@@ -81,15 +81,15 @@ class ProductSeeder extends Seeder
             'price' => '20.000',
             'photo' => 'beauty7.jpg',
         ]);
-        DB::table('product')->insert([
-            // 'id' => 8,
-            'category_id' => 1,
-            'name' => 'lorem',
-            'category' => 'Beauty',
-            'detail' => 'lorem',
-            'price' => '20.000',
-            'photo' => 'beauty8.jpg',
-        ]);
+        // DB::table('product')->insert([
+        //     // 'id' => 8,
+        //     'category_id' => 1,
+        //     'name' => 'lorem',
+        //     'category' => 'Beauty',
+        //     'detail' => 'lorem',
+        //     'price' => '20.000',
+        //     'photo' => 'beauty8.jpg',
+        // ]);
 
         // kategori kamera
 
@@ -156,15 +156,15 @@ class ProductSeeder extends Seeder
             'price' => '20.000',
             'photo' => 'camera7.jpg',
         ]);
-        DB::table('product')->insert([
-            // 'id' => 10,
-            'category_id' => 2,
-            'name' => 'lorem',
-            'category' => 'Camera',
-            'detail' => 'lorem',
-            'price' => '20.000',
-            'photo' => 'camera8.jpg',
-        ]);
+        // DB::table('product')->insert([
+        //     // 'id' => 10,
+        //     'category_id' => 2,
+        //     'name' => 'lorem',
+        //     'category' => 'Camera',
+        //     'detail' => 'lorem',
+        //     'price' => '20.000',
+        //     'photo' => 'camera8.jpg',
+        // ]);
 
 
 

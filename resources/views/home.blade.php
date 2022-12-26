@@ -23,41 +23,53 @@
                 </button>
             </div>
         </div>
+        @foreach ($category as $c)
+            <div class="container mydiv p-5">
 
-        <div class="container mydiv p-5">
+                {{-- div buat nama category dan link untuk view all --}}
+                <div class="mb-4" style="border">
+                    <h2>
+                        <b>{{ $c->name }}</b>
+                    </h2>
+                    <span style="font-weight: normal"><a href="/category/{{ $c->name }}">{{ $c->name }}</a></span>
+                </div>
 
-            {{-- div buat nama category dan link untuk view all --}}
-            <div class="mb-4" style="border">
-                <h2>
-                    <b>Beauty</b>
-                </h2>
-                <span style="font-weight: normal"><a href="#">View All</a></span>
-            </div>
+                <div class="row pb-5" style="border-bottom: 1px solid white">
+                    @foreach ($product as $p)
+                        @if ($c->id == $p->category_id)
+                            <div class="col-sm-3 mb-4" style="">
+                                {{-- a href buat klik detail dari cardnya --}}
+                                <a href="product-detail"> {{-- redirect ke halaman detail produk --}}
+                                    <div class="thumb-wrapper" style="background-color: #9B8983; ">
 
-            <div class="row pb-5" style="border-bottom: 1px solid white">
-                @foreach ($product as $product)
-                    <div class="col-sm-3 mb-4" style="">
-                        {{-- a href buat klik detail dari cardnya --}}
-                        <a href="product-detail"> {{-- redirect ke halaman detail produk --}}
-                            <div class="thumb-wrapper" style="background-color: #9B8983; ">
+                                        <div class="img-box">
+                                            <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}"
+                                                class="img-fluid" alt="">
+                                        </div>
+                                        <div class="thumb-content">
+                                            <h4>{{ $p->name }}</h4>
 
-                                <div class="img-box">
-                                    <img src="{{ \Illuminate\Support\Facades\URL::asset('image/beauty/' . $product->photo) }}"
-                                        class="img-fluid" alt="">
-                                </div>
-                                <div class="thumb-content">
-                                    <h4>Apple iPad</h4>
+                                            <p class="item-price">IDR{{ $p->price }}</p>
 
-                                    <p class="item-price"><strike>$400.00</strike> <b>$369.00</b></p>
-
-                                </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                @endforeach
+                        @endif
+                    @endforeach
+
+
+
+                </div>
+            </div>
+
 
             </div>
+        @endforeach
         </div>
+
+
+
 
         {{-- <div class="container mydiv">
             <h2><b>Camera</b></h2>

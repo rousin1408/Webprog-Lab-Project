@@ -2,7 +2,9 @@
     {{-- changed max width for navbar --}}
     <div class="container-fluid" class="color:white!important;" style="max-width: 1140px">
         <a class="navbar-brand logo text-light" href="/">
-            <b><h1>Barbatos Shop</h1></b>
+            <b>
+                <h1>Barbatos Shop</h1>
+            </b>
         </a>
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item dropdown">
@@ -11,9 +13,9 @@
                     Category
                 </a>
                 <ul class="dropdown-menu">
-                    @foreach ($category as $category)
+                    @foreach ($category as $c)
                         <li><a class="dropdown-item"
-                                href="{{ url('category', ['name' => $category->name]) }}">{{ $category->name }}</a>
+                                href="{{ url('category', ['name' => $c->name]) }}">{{ $c->name }}</a>
                         </li>
                     @endforeach
                 </ul>

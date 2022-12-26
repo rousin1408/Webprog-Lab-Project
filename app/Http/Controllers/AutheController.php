@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
+use Illuminate\Database\Eloquent\Collection;
 
 class AutheController extends Controller
 {
@@ -79,17 +80,33 @@ class AutheController extends Controller
     public function home()
     {
         $category = Category::all();
-
-        $product = Product::take(7)->get();
+        $product = Product::All();
         return view('home', ['category' => $category], ['product' => $product]);
+    }
+    public function category($name)
+    {
+        // $categories = Category::all();
+        // $category = Category::where('name', $name)->get();
+        // $product = Product::where('category_id', $category->id)->paginate(10);
+
+
+
+        // $categories = Category::all();
+        $category = Category::where('name', $name)->first();
+        $product = $category->product()->paginate(10);
+
+
+        // 'categories' => categories::all(),
+        // 'books' => book_category::with('book')->where('category_id', $id)->get(),
+        // 'current' => categories::where('id', $id)->first()
+        return view('category', ['category' => $category,  'product' => $product]);
     }
 
     // product detail
     public function productDetail()
     {
         $category = Category::all();
-
-        $product = Product::take(7)->get();
+        $product = Product::take(4)->get();
         return view('product-detail', ['category' => $category], ['product' => $product]);
     }
 }
