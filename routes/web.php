@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutheController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +19,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [AutheController::class, 'home']);
-// Route::get('/{id}', [AutheController::class, 'home']);
+// route search
+Route::get('/search', [AutheController::class, 'search']);
 
 // route product detail
-Route::get('/product-detail', [AutheController::class, 'productDetail']);
+Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
 
 // route manage product
-Route::get('/manage-product', [AutheController::class,'manageProduct']);
+Route::get('/manage-product', [AutheController::class, 'manageProduct']);
 
 // register
 Route::get('/register', [AutheController::class, 'register']);

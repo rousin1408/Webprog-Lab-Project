@@ -12,15 +12,17 @@
 
     <body style="background-color: #795548">
         {{-- search --}}
-        <div class="container">
-            <div class="input-group p-5" style="">
-                <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
-                    aria-describedby="search-addon" />
-                <button type="button" class="btn btn-outline-secondary" style="border-color:white">
-                    <i class="fa fa-search" style="color: white"></i>
-                </button>
+        <form action="/search" method="GET">
+            <div class="container">
+                <div class="input-group p-5" style="">
+                    <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
+                        aria-describedby="search-addon" name="search" />
+                    <button type="submit" class="btn btn-outline-secondary" style="border-color:white">
+                        <i class="fa fa-search" style="color: white"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
         {{-- start looping category --}}
         @foreach ($category as $c)
             <div class="container mydiv p-5">
@@ -29,7 +31,7 @@
                     <h2>
                         <b>{{ $c->name }}</b>
                     </h2>
-                    <span style="font-weight: normal"><a href="/category/{{ $c->name }}">{{ $c->name }}</a></span>
+                    <span style="font-weight: normal"><a href="/category/{{ $c->name }}">View All</a></span>
                 </div>
 
                 <div class="row pb-5" style="border-bottom: 1px solid white">
@@ -39,7 +41,7 @@
                         @if ($c->id == $p->category_id)
                             <div class="col-sm-3 mb-4" style="">
                                 {{-- a href buat klik detail dari cardnya --}}
-                                <a href="product-detail"> {{-- redirect ke halaman detail produk --}}
+                                <a href="/product-detail/{{ $p->id }}"> {{-- redirect ke halaman detail produk --}}
                                     <div class="thumb-wrapper" style="background-color: #9B8983; ">
                                         {{-- foto --}}
                                         <div class="img-box">

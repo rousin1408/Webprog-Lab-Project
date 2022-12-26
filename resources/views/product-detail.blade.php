@@ -19,7 +19,7 @@
                 <div class="col">
                     {{-- nama --}}
                     <h2>
-                        <b>Bedak Sakti</b>
+                        <b>{{ $product->name }}</b>
                     </h2>
                 </div>
             </div>
@@ -27,42 +27,47 @@
                 {{-- foto --}}
                 <div class="col-4">
                     <div class="img-box" style="width: 100%;">
-                        <img src="/image/   beauty1.jpg"
-                            class="img-fluid" alt="" style="border-radius: 15px">
+                        <img src={{ asset('image/' . $product->photo) }} class="img-fluid" alt=""
+                            style="border-radius: 15px">
                     </div>
                 </div>
                 <div class="col-5 mr-2" style="">
                     <h3 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
-                       <b>Details</b>
+                        <b>Details</b>
                     </h3>
                     {{-- kategori --}}
-                    <p>Category: Beauty</p>
+                    <p>Category: {{ $product->category }}</p>
                     {{-- deskripsi / detail --}}
                     <p>Description:</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere debitis laudantium aliquid nemo! Voluptatem alias itaque error repellat, praesentium quaerat laborum non eius sit dolore modi atque ab amet ad.</p>
+                    <p>{{ $product->detail }}</p>
                 </div>
 
                 <div class="col">
                     {{-- box buat beli barang --}}
                     <div class="container pt-5 pb-5 shadow" style="background-color:#795548">
+
                         {{-- harga --}}
                         <h4 class="mb-4">
-                            <b>Price: Rp25.000</b>
+                            <b>Price: Rp.{{ $product->price }}</b>
                         </h4>
                         {{-- button qty --}}
                         <form action="">
                             <div class="input-group mb-3">
                                 <h6 class="mr-3">Quantity:</h6>
                                 {{-- button minus --}}
-                                <button class="btn btn-sm btn-outline-secondary" type="button" style="color: white; background-color:#757575">-</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button"
+                                    style="color: white; background-color:#757575">-</button>
                                 {{-- text quantity --}}
-                                <input type="text" class="form-control  form-control-sm" placeholder="0" aria-label="Example text with two button addons" style="text-align: center">
+                                <input type="text" class="form-control  form-control-sm" placeholder="0"
+                                    aria-label="Example text with two button addons" style="text-align: center">
                                 {{-- button plus --}}
-                                <button class="btn btn-sm btn-outline-secondary" type="button" style="background-color:#757575; color:white">+</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="button"
+                                    style="background-color:#757575; color:white">+</button>
                             </div>
                             <div class="input-group">
                                 {{-- button submit --}}
-                                <button type="submit" class="btn btn-primary mb-3 fw-bold shadow" style="width: 100%; background-color:#757575; border:none">Add to cart</button>
+                                <button type="submit" class="btn btn-primary mb-3 fw-bold shadow"
+                                    style="width: 100%; background-color:#757575; border:none">Add to cart</button>
                             </div>
                         </form>
                     </div>

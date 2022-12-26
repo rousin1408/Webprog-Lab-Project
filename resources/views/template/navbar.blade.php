@@ -14,8 +14,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     @foreach ($category as $c)
-                        <li><a class="dropdown-item"
-                                href="{{ url('category', ['name' => $c->name]) }}">{{ $c->name }}</a>
+                        <li><a class="dropdown-item" href="/category/{{ $c->name }}">{{ $c->name }}</a>
                         </li>
                     @endforeach
                 </ul>

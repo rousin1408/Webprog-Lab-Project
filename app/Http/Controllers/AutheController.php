@@ -85,31 +85,31 @@ class AutheController extends Controller
     }
     public function category($name)
     {
-        // $categories = Category::all();
-        // $category = Category::where('name', $name)->get();
-        // $product = Product::where('category_id', $category->id)->paginate(10);
+        $category = Category::all();
+        $categories = Category::where('name', '=', $name)->first();
+        $product = $categories->product()->paginate(2);
 
-
-
-        // $categories = Category::all();
-        $category = Category::where('name', $name)->first();
-        $product = $category->product()->paginate(10);
-
-
-        // 'categories' => categories::all(),
-        // 'books' => book_category::with('book')->where('category_id', $id)->get(),
-        // 'current' => categories::where('id', $id)->first()
-        return view('category', ['category' => $category,  'product' => $product]);
+        return view('category', ['category' => $category,  'product' => $product, 'categories' => $categories]);
     }
 
     // product detail
-    public function productDetail()
+    public function productDetail($id)
     {
+
+        $product = Product::with('category')->where('id', '=', $id)->first();
         $category = Category::all();
-        $product = Product::take(4)->get();
-        return view('product-detail', ['category' => $category], ['product' => $product]);
+        return view('product-detail', ['product' => $product, 'category' => $category]);
     }
 
+    public function search(Request $req)
+    {
+
+        $category = Category::all();
+        $name = $req->search;
+        $product = Product::where('name', 'LIKE', '%' . $name . '%')->get();
+
+        return view('search', ['category' => $category, 'product' => $product]);
+    }
     // manage product
     public function manageProduct()
     {
