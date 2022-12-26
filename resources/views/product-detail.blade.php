@@ -13,6 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <body style="background-color: #795548">
+        {{-- start card --}}
         <div class="container p-4 pb-5 shadow" style="color: white">
             <div class="row mb-3">
                 <div class="col">
@@ -42,6 +43,7 @@
                 </div>
 
                 <div class="col">
+                    {{-- box buat beli barang --}}
                     <div class="container pt-5 pb-5 shadow" style="background-color:#795548">
                         {{-- harga --}}
                         <h4 class="mb-4">
@@ -67,6 +69,6 @@
                 </div>
             </div>
         </div>
-
+        {{-- end card --}}
     </body>
 @endsection

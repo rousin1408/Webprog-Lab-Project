@@ -24,6 +24,9 @@ Route::get('/', [AutheController::class, 'home']);
 Route::get('/product-detail', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
 
+// route manage product
+Route::get('/manage-product', [AutheController::class,'manageProduct']);
+
 // register
 Route::get('/register', [AutheController::class, 'register']);
 
