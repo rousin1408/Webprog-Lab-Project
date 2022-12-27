@@ -11,75 +11,74 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     <body style="">
-        <div class="container" style="background-color: none">
+        <div class="container pl-4 pr-4" style="background-color: none">
+            <div class="row pt-3" style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
+                <h2 class="pb-2">
+                   <b>Add new product</b>
+                </h2>
+            </div>
             <div class="row pt-3 pb-3">
-                {{-- search bar --}}
-                <div class="col">
-                    <div class="input-group" style="">
-                        <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
-                            aria-describedby="search-addon" />
-                        <button type="button" class="btn btn-outline-secondary" style="border-color:white">
-                            <i class="fa fa-search" style="color: white"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="col">
-                    {{-- empty col to seperate search bar and add button --}}
-                </div>
                 {{-- add product button --}}
-                <div class="col-3">
+                <div class="col-2">
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary fw-bold shadow" style="width:100%; background-color:#757575; border:none;">Add product</button>
+                        <button type="submit" class="btn btn-primary fw-bold shadow" style="width:100%; background-color:#757575; border:none;">Back</button>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{-- form new product --}}
+                    <form style="color:white">
+                        @csrf
+                        <div class="form-floating mb-3">
+                            <input type="name" class="form-control" id="floatingInput" placeholder="Name"
+                                name="name" value="{{ old('name') }}">
+                            <label for="floatingInput" style="color:black">Name</label>
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                        {{-- file gambar --}}
+                        <div class="mb-3">
+                            {{-- <label for="formFile" class="form-label">Default file input example</label> --}}
+                            <input class="form-control" type="file" id="formFile">
+                          </div>
+
+                        {{-- category --}}
+                        <div class="form-floating mb-3">
+                            <input type="category" class="form-control" id="floatingInput" placeholder="Category"
+                                name="category" value="{{ old('Category') }}">
+                            <label for="floatingInput" style="color:black">Category</label>
+                            @if ($errors->has('category'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                        {{-- description --}}
+                        <div class="form-floating mb-3">
+                            <input type="description" class="form-control" id="floatingInput" placeholder="Description"
+                                name="description" value="{{ old('description') }}">
+                            <label for="floatingInput" style="color:black">
+                                Description
+                            </label>
+                            @if ($errors->has('name'))
+                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                        {{-- Price --}}
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Rp</span>
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" value="{{ old('description') }}" placeholder="Price">
+                            {{-- <span class="input-group-text">.00</span> --}}
+                        </div>
+                        {{-- submit --}}
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <button type="submit" class="btn btn-primary fw-bold shadow" style="width:25%; background-color:#757575; border:none;">Submit</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        {{-- start looping item disini --}}
-        @foreach ($product as $p)
-            {{-- start card --}}
-            <div class="container p-4 shadow" style="color: white">
-                <div class="row">
-                    {{-- kolom foto --}}
-                    <div class="col-3">
-                        <div class="img-box" style="width: 100%;">
-                            <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}" class="img-fluid" alt="" style="border-radius: 15px">
-                        </div>
-                    </div>
-                    <div class="col-6 mr-2" style="">
-                        {{-- nama barang --}}
-                        <h4 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
-                        <b>{{ $p->name }}</b>
-                        </h4>
-                        {{-- kategori --}}
-                        <p>Category: {{ $p->category }}</p>
-                        {{-- harga --}}
-                        <p>Price: {{ $p->price }}</p>
-                        {{-- deskripsi / detail --}}
-                        <p>Description:</p>
-                        <p>{{ $p->detail }}.</p>
-                    </div>
-
-                    {{-- box opsi --}}
-                    <div class="col pt-4">
-                        <div class="container pt-4 pb-4" style="background-color:#795548">
-                            {{-- button qty --}}
-                            <form action="">
-                                <div class="input-group mb-3">
-                                    {{-- button submit --}}
-                                    <button type="submit" class="btn btn-primary fw-bold shadow" style="width: 100%; background-color:#757575; border:none">Edit</button>
-                                </div>
-                                <div class="input-group">
-                                    {{-- button submit --}}
-                                    <button type="submit" class="btn btn-primary fw-bold shadow" style="width: 100%; background-color:red; border:none">Delete</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- end card --}}
-        @endforeach
-        {{-- end looping item --}}
     </body>
 @endsection
