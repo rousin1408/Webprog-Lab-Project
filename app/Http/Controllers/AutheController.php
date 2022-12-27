@@ -110,6 +110,7 @@ class AutheController extends Controller
 
         return view('search', ['category' => $category, 'product' => $product]);
     }
+    
     // manage product
     public function manageProduct()
     {
@@ -117,5 +118,14 @@ class AutheController extends Controller
         $product = Product::all();
         // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
+    }
+
+    // new product
+    public function newProduct()
+    {
+        $category = Category::all();
+        $product = Product::all();
+        // dd($product);
+        return view('new-product', ['category' => $category], ['product' => $product]);
     }
 }
