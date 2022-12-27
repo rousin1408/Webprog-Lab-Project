@@ -29,6 +29,9 @@ Route::get('/category/{name}', [AutheController::class, 'category']);
 // route manage product
 Route::get('/manage-product', [AutheController::class, 'manageProduct']);
 
+// route add new product
+Route::get('/new-product', [AutheController::class, 'newProduct']);
+
 // register
 Route::get('/register', [AutheController::class, 'register']);
 
