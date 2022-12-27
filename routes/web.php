@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [AutheController::class, 'home']);
+Route::get('/', [AutheController::class, 'home'])->name('home');
 // route search
 Route::get('/search', [AutheController::class, 'search']);
 
@@ -26,16 +26,36 @@ Route::get('/search', [AutheController::class, 'search']);
 Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
 
-// route manage product
-Route::get('/manage-product', [AutheController::class, 'manageProduct']);
 
-// route add new product
-Route::get('/new-product', [AutheController::class, 'newProduct']);
 
-// register
-Route::get('/register', [AutheController::class, 'register']);
 
-// login
-Route::get('/login', [AutheController::class, 'login']);
-Route::post('/register-validation', [AutheController::class, 'validationregistration']);
-Route::post('/login-validation', [AutheController::class, 'validationlogin']);
+
+
+Route::middleware('auth')->group(function () {
+    Route::delete('/logout', [AutheController::class, 'logout'])->name('logout');
+});
+
+Route::middleware('guest')->group(function () {
+    // register
+    Route::get('/register', [AutheController::class, 'register']);
+    Route::post('/register-validation', [AutheController::class, 'validationregistration']);
+
+    // login
+    Route::get('/login', [AutheController::class, 'login'])->name('login');
+    Route::post('/login-validation', [AutheController::class, 'validationlogin']);
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    // route manage product
+    Route::get('/manage-product', [AutheController::class, 'manageProduct'])->name('manage-product');
+
+    // route add new product
+    Route::get('/new-product', [AutheController::class, 'newProduct']);
+});
+
+Route::middleware(['auth', 'user'])->group(function () {
+    // route product detail
+    Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
+    Route::get('/category/{name}', [AutheController::class, 'category']);
+    Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
+});

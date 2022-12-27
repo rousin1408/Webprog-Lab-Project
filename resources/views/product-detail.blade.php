@@ -56,13 +56,14 @@
                                 <h6 class="mr-3">Quantity:</h6>
                                 {{-- button minus --}}
                                 <button class="btn btn-sm btn-outline-secondary" type="button"
-                                    style="color: white; background-color:#757575">-</button>
+                                    style="color: white; background-color:#757575" onclick="kurang()">-</button>
                                 {{-- text quantity --}}
-                                <input type="text" class="form-control  form-control-sm" placeholder="0"
-                                    aria-label="Example text with two button addons" style="text-align: center">
+                                <input type="text" class="form-control  form-control-sm" value="0"
+                                    aria-label="Example text with two button addons"
+                                    onkeyup="validate()"style="text-align: center">
                                 {{-- button plus --}}
                                 <button class="btn btn-sm btn-outline-secondary" type="button"
-                                    style="background-color:#757575; color:white">+</button>
+                                    style="background-color:#757575; color:white" onclick="tambah()">+</button>
                             </div>
                             <div class="input-group">
                                 {{-- button submit --}}
@@ -76,4 +77,33 @@
         </div>
         {{-- end card --}}
     </body>
+
+    <script>
+        var num = document.getElementById("number");
+
+        function tambah() {
+            if (Number(num.value) < 10) {
+                num.value = Number(num.value) + 1;
+            }
+
+
+        }
+
+        function kurang() {
+            if (Number(num.value) > 0) {
+                num.value = Number(num.value) - 1;
+            }
+
+        }
+
+        function validate() {
+            var pola = /^\d+$/;
+            if (Number(num.value) > 10 || Number(num.value) < 0 || !pola.test(num.value)) {
+                num.value = 0;
+            }
+
+        }
+    </script>
+
+
 @endsection

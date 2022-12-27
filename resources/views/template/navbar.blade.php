@@ -27,18 +27,80 @@
         </button>
         <div class="navbar-nav ml-auto" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="{{ url('/login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" aria-current="page" href="{{ url('/register') }}">
-                        Register
-                    </a>
 
-                </li>
 
+
+
+                @if (Illuminate\Support\Facades\Auth::check() && Illuminate\Support\Facades\Auth::user()->role == 'admin')
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="{{ url('/manage-product') }}">Manage
+                            Product</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white">
+                            {{ Illuminate\Support\Facades\Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a class="dropdown-item" href="">Profile</a>
+                            </li>
+
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+                @elseif(Illuminate\Support\Facades\Auth::check() && Illuminate\Support\Facades\Auth::user()->role == 'user')
+                    <div class="d-flex align-items-center" style="margin: 0 1vw">
+                        <li class="nav-item">
+                            <a href="{{ url('cart') }}">
+                                <i class="fa fa-shopping-cart"></i>
+                            </a>
+                        </li>
+                    </div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="color: white">
+                            {{ Illuminate\Support\Facades\Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="">Profile</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="">History</a>
+                            </li>
+                            <li>
+                                <form action="/logout" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+
+
+                        </ul>
+
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="{{ url('/login') }}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" aria-current="page" href="{{ url('/register') }}">
+                            Register
+                        </a>
+                    </li>
+                @endif
             </ul>
-
         </div>
     </div>
 </nav>

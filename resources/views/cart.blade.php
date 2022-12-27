@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('page_name', 'product-detail')
+@section('page_name', 'cart')
 @section('content')
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
@@ -67,11 +67,7 @@
                         <div class="container pt-4 pb-4" style="background-color:#795548">
                             {{-- button qty --}}
                             <form action="">
-                                <div class="input-group mb-3">
-                                    {{-- button submit --}}
-                                    <button type="submit" class="btn btn-primary fw-bold shadow"
-                                        style="width: 100%; background-color:#757575; border:none">Edit</button>
-                                </div>
+
                                 <div class="input-group">
                                     {{-- button submit --}}
                                     <button type="submit" class="btn btn-primary fw-bold shadow"

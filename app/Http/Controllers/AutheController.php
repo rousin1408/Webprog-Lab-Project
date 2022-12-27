@@ -54,28 +54,41 @@ class AutheController extends Controller
         ]);
         return redirect('login');
     }
-    public function validationlogin(Request $request)
+    public function validationlogin(Request $req)
     {
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:users,email',
+        $validator = Validator::make($req->all(), [
+            'email' => 'required',
             'password' => 'required',
         ]);
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         }
-        $remmeberMe = true;
-        if ($request->remmeberMe == null) {
-            $remmeberMe = false;
+
+        $rememberMe = true;
+        if ($req->remember == null) {
+            $rememberMe = false;
         }
-        $cred = $request->only('email', 'password');
-        if (Auth::attempt($cred, $remmeberMe)) {
-            if ($remmeberMe == true) {
-                Cookie::queue('last_logged', $request->email, 60);
+
+        $cred = $req->only('email', 'password');
+        if (Auth::attempt($cred, $rememberMe)) {
+            if ($rememberMe == true) {
+                Cookie::queue('last_logged', $req->email, 60 * 24 * 30);
             }
-            return redirect()->route('home');
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('manage-product');
+            } else {
+                return redirect()->route('home');
+            }
         }
-        return redirect()->back()->withErrors('Invalid credentials');
+        return redirect()->back()->withErrors('invalid credentials');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('login');
     }
     public function home()
     {
@@ -110,7 +123,7 @@ class AutheController extends Controller
 
         return view('search', ['category' => $category, 'product' => $product]);
     }
-    
+
     // manage product
     public function manageProduct()
     {
@@ -118,6 +131,13 @@ class AutheController extends Controller
         $product = Product::all();
         // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
+    }
+    public function cart()
+    {
+        $category = Category::all();
+        $product = Product::all();
+        // dd($product);
+        return view('cart', ['category' => $category], ['product' => $product]);
     }
 
     // new product
