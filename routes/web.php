@@ -18,11 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [AutheController::class, 'home'])->name('home');
+
 // route search
 Route::get('/search', [AutheController::class, 'search']);
 
 // route product detail
+Route::get('/', [AutheController::class, 'home'])->name('home');
 Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
 
@@ -32,10 +33,12 @@ Route::get('/category/{name}', [AutheController::class, 'category']);
 
 
 Route::middleware('auth')->group(function () {
+    Route::get('/profile', [AutheController::class, 'profile'])->name('profile');
     Route::delete('/logout', [AutheController::class, 'logout'])->name('logout');
 });
 
 Route::middleware('guest')->group(function () {
+
     // register
     Route::get('/register', [AutheController::class, 'register']);
     Route::post('/register-validation', [AutheController::class, 'validationregistration']);
@@ -46,16 +49,19 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
+
     // route manage product
     Route::get('/manage-product', [AutheController::class, 'manageProduct'])->name('manage-product');
 
     // route add new product
-    Route::get('/new-product', [AutheController::class, 'newProduct']);
+    Route::get('/new-product', [AutheController::class, 'NewProduct']);
+    Route::post('/add-new-product', [AutheController::class, 'AddNewProduct']);
+    Route::get('/manage-product/delete/{id}', [AutheController::class, 'DeleteProduct']);
 });
 
 Route::middleware(['auth', 'user'])->group(function () {
-    // route product detail
-    Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
-    Route::get('/category/{name}', [AutheController::class, 'category']);
+
+    // route cart
+
     Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
 });

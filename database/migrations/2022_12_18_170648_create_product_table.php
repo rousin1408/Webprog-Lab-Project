@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id')->references('id')->on('product')->onUpdate('cascade')->onDelete('cascade');
             $table->string('name');
-            $table->string('category');
             $table->longtext('detail');
             $table->integer('price');
             $table->longText('photo');

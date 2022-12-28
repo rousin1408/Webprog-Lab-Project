@@ -15,7 +15,8 @@
                             @csrf
                             <div class="form-floating mb-3">
                                 <input type="email" class="form-control" id="floatingInput" name="email"
-                                    value="{{ old('email') }}" placeholder="name@example.com" required>
+                                    value="{{ Cookie::get('last_logged') ? Cookie::get('last_logged') : '' }}"
+                                    placeholder="name@example.com" required>
                                 <label for="floatingInput" style="color:black">Email</label>
                                 @if ($errors->has('email'))
                                     <span class="text-danger">{{ $errors->first('email') }}</span>
@@ -43,7 +44,8 @@
                             @endif
 
                             <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                                <input class="form-check-input" type="checkbox" value="remember" name="remember"
+                                    id="rememberPasswordCheck">
                                 <label class="form-check-label" for="rememberPasswordCheck">
                                     Remember password
                                 </label>

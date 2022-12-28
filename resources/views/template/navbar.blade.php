@@ -27,10 +27,6 @@
         </button>
         <div class="navbar-nav ml-auto" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-
-
                 @if (Illuminate\Support\Facades\Auth::check() && Illuminate\Support\Facades\Auth::user()->role == 'admin')
                     <li class="nav-item">
                         <a class="nav-link text-light" aria-current="page" href="{{ url('/manage-product') }}">Manage
@@ -43,7 +39,7 @@
                         </a>
                         <ul class="dropdown-menu">
 
-                            <li><a class="dropdown-item" href="">Profile</a>
+                            <li><a class="dropdown-item" href="/profile">Profile</a>
                             </li>
 
                             <li>
@@ -73,7 +69,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a class="dropdown-item" href="">Profile</a>
+                                <a class="dropdown-item" href="/profile">Profile</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="">History</a>
@@ -92,10 +88,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="{{ url('/login') }}">Login</a>
+                        <a class="nav-link text-light" aria-current="page" href="/login">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-light" aria-current="page" href="{{ url('/register') }}">
+                        <a class="nav-link text-light" aria-current="page" href="/register">
                             Register
                         </a>
                     </li>

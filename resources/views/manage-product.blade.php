@@ -29,8 +29,8 @@
                 {{-- add product button --}}
                 <div class="col-3">
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary fw-bold shadow"
-                            style="width:100%; background-color:#757575; border:none;">Add product</button>
+                        <a href="/new-product" class="btn btn-primary fw-bold shadow"
+                            style="width:100%; background-color:#757575; border:none;">Add product</a>
                     </div>
                 </div>
             </div>
@@ -74,8 +74,9 @@
                                 </div>
                                 <div class="input-group">
                                     {{-- button submit --}}
-                                    <button type="submit" class="btn btn-primary fw-bold shadow"
-                                        style="width: 100%; background-color:red; border:none">Delete</button>
+                                    <a href="/manage-product/delete/{{ $p->id }}"
+                                        class="btn btn-primary fw-bold shadow"
+                                        style="width: 100%; background-color:red; border:none">Delete</a>
                                 </div>
                             </form>
                         </div>
@@ -86,5 +87,5 @@
         @endforeach
         {{-- end looping item --}}
     </body>
-    <li><a class="dropdown-item" href="{{ url('logout') }}">Logout</a></li>
+
 @endsection

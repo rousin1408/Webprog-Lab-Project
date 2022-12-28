@@ -9,12 +9,14 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\File;
 
 class AutheController extends Controller
 {
@@ -74,7 +76,7 @@ class AutheController extends Controller
         $cred = $req->only('email', 'password');
         if (Auth::attempt($cred, $rememberMe)) {
             if ($rememberMe == true) {
-                Cookie::queue('last_logged', $req->email, 60 * 24 * 30);
+                Cookie::queue('last_logged', $req->email, 120);
             }
             if (Auth::user()->role == 'admin') {
                 return redirect()->route('manage-product');
@@ -82,13 +84,19 @@ class AutheController extends Controller
                 return redirect()->route('home');
             }
         }
-        return redirect()->back()->withErrors('invalid credentials');
+        return redirect()->back()->withErrors('Invalid Credentials');
     }
 
     public function logout()
     {
         Auth::logout();
         return redirect('login');
+    }
+    public function profile()
+    {
+        $category = Category::all();
+        $product = Product::All();
+        return view('profile', ['category' => $category], ['product' => $product]);
     }
     public function home()
     {
@@ -141,11 +149,48 @@ class AutheController extends Controller
     }
 
     // new product
-    public function newProduct()
+    public function NewProduct()
     {
         $category = Category::all();
         $product = Product::all();
-        // dd($product);
         return view('new-product', ['category' => $category], ['product' => $product]);
+    }
+    public function AddNewProduct(Request $req)
+    {
+        // $category = Category::all();
+        // $product = Product::all();
+        $req->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'detail' => 'required',
+            'price' => 'required|numeric',
+            'photo' => 'required|file|image|mimes:jpg,jpeg,png',
+        ]);
+        $photo = $req->file('photo');
+        $file_name = $photo->getClientOriginalName();
+        $path = 'image/';
+        $photo->move($path, $file_name);
+
+        $datas = $req->all();
+        Product::create([
+            'name' => $datas['name'],
+            'category_id' => $datas['category'],
+            'detail' => $datas['detail'],
+            'price' => $datas['price'],
+            'photo' => $file_name,
+        ]);
+
+        return redirect('manage-product');
+    }
+    public function DeleteProduct($id)
+    {
+        $product = Product::find($id);
+
+        if (isset($product)) {
+            Storage::delete('image/' . $product->photo);
+            $product->delete();
+        }
+
+        return redirect()->back();
     }
 }

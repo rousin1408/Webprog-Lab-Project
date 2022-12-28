@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('page_name', 'product-detail')
+@section('page_name', 'new-product-detail')
 @section('content')
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
@@ -14,25 +14,27 @@
         <div class="container pl-4 pr-4" style="background-color: none">
             <div class="row pt-3" style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
                 <h2 class="pb-2">
-                   <b>Add new product</b>
+                    <b>Add new product</b>
                 </h2>
             </div>
             <div class="row pt-3 pb-3">
                 {{-- add product button --}}
                 <div class="col-2">
                     <div class="input-group">
-                        <button type="submit" class="btn btn-primary fw-bold shadow" style="width:100%; background-color:#757575; border:none;">Back</button>
+                        <a href="/manage-product" class="btn btn-primary fw-bold shadow"
+                            style="width:100%; background-color:#757575; border:none;">Back</a>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
                     {{-- form new product --}}
-                    <form style="color:white">
+                    <form action="{{ url('/add-new-product') }}" method="POST"
+                        style="color:white"enctype="multipart/form-data">
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="name" class="form-control" id="floatingInput" placeholder="Name"
-                                name="name" value="{{ old('name') }}">
+                            <input type="name" class="form-control" id="floatingInput" placeholder="Name" name="name"
+                                value="{{ old('name') }}">
                             <label for="floatingInput" style="color:black">Name</label>
                             @if ($errors->has('name'))
                                 <span class="text-danger">{{ $errors->first('name') }}</span>
@@ -41,39 +43,48 @@
                         {{-- file gambar --}}
                         <div class="mb-3">
                             {{-- <label for="formFile" class="form-label">Default file input example</label> --}}
-                            <input class="form-control" type="file" id="formFile">
-                          </div>
+                            <input class="form-control" type="file" id="formFile" name="photo">
+                        </div>
 
                         {{-- category --}}
-                        <div class="form-floating mb-3">
-                            <input type="category" class="form-control" id="floatingInput" placeholder="Category"
-                                name="category" value="{{ old('Category') }}">
-                            <label for="floatingInput" style="color:black">Category</label>
-                            @if ($errors->has('category'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
-                            @endif
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Category</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" name="category">
+                                <option selected>No Category Choose</option>
+                                @foreach ($category as $c)
+                                    @if (old('category') == $c->id)
+                                        <option value="{{ $c->id }}" selected> {{ $c->name }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $c->id }}"> {{ $c->name }} </option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
-                        {{-- description --}}
+
+                        {{-- detail --}}
                         <div class="form-floating mb-3">
-                            <input type="description" class="form-control" id="floatingInput" placeholder="Description"
-                                name="description" value="{{ old('description') }}">
-                            <label for="floatingInput" style="color:black">
-                                Description
-                            </label>
-                            @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
+
+                            <textarea class="form-control" id="floatingInput" rows="7" name="detail">{{ old('detail') }}</textarea>
+                            <label for="floatingInput" style="color:black">Detail</label>
+                            @if ($errors->has('detail'))
+                                <span class="text-danger">{{ $errors->first('detail') }}</span>
                             @endif
                         </div>
                         {{-- Price --}}
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
-                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="price" value="{{ old('description') }}" placeholder="Price">
+                            <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
+                                name="price" value="{{ old('price') }}" placeholder="Price">
                             {{-- <span class="input-group-text">.00</span> --}}
                         </div>
                         {{-- submit --}}
                         <div class="mb-3">
                             <div class="input-group">
-                                <button type="submit" class="btn btn-primary fw-bold shadow" style="width:25%; background-color:#757575; border:none;">Submit</button>
+                                <button type="submit" class="btn btn-primary fw-bold shadow"
+                                    style="width:25%; background-color:#757575; border:none;">Submit</button>
                             </div>
                         </div>
                     </form>
