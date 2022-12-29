@@ -29,7 +29,7 @@
                     {{-- foto --}}
                     <div class="col-4">
                         <div class="img-box" style="width: 100%;">
-                            <img src={{ asset('image/' . $product->photo) }} class="img-fluid" alt=""
+                            <img src={{ asset('storage/' . $product->photo) }} class="img-fluid" alt=""
                                 style="border-radius: 15px">
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                             <b>Details</b>
                         </h3>
                         {{-- kategori --}}
-                        <p>Category: {{ $product->category }}</p>
+                        <p>Category: {{ $product->category->name }}</p>
                         {{-- deskripsi / detail --}}
                         <p>Description:</p>
                         <p>{{ $product->detail }}</p>
@@ -97,7 +97,7 @@
                     {{-- foto --}}
                     <div class="col-4">
                         <div class="img-box" style="width: 100%;">
-                            <img src={{ asset('image/' . $product->photo) }} class="img-fluid" alt=""
+                            <img src={{ asset('storage/' . $product->photo) }} class="img-fluid" alt=""
                                 style="border-radius: 15px">
                         </div>
                     </div>
@@ -106,7 +106,7 @@
                             <b>Details</b>
                         </h3>
                         {{-- kategori --}}
-                        <p>Category: {{ $product->category }}</p>
+                        <p>Category: {{ $product->category->name }}</p>
                         {{-- deskripsi / detail --}}
                         <p>Description:</p>
                         <p>{{ $product->detail }}</p>

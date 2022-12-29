@@ -43,11 +43,11 @@
                             <div class="thumb-wrapper" style="background-color: #9B8983; ">
 
                                 <div class="img-box">
-                                    <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}"
+                                    <img src="{{ \Illuminate\Support\Facades\URL::asset('storage/' . $p->photo) }}"
                                         class="img-fluid" alt="">
                                 </div>
                                 <div class="thumb-content">
-                                    <h4>{{ $p->name }}</h4>
+                                    <h4>{{ $p->category->name }}</h4>
 
                                     <p class="item-price">IDR{{ $p->price }}</p>
 

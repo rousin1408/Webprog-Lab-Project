@@ -7,6 +7,7 @@ use App\Models\Country;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -108,7 +109,7 @@ class AutheController extends Controller
     {
         $category = Category::all();
         $categories = Category::where('name', '=', $name)->first();
-        $product = $categories->product()->paginate(2);
+        $product = $categories->product()->paginate(10);
 
         return view('category', ['category' => $category,  'product' => $product, 'categories' => $categories]);
     }
@@ -140,7 +141,7 @@ class AutheController extends Controller
         // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
     }
-    
+
     // cart
     public function cart()
     {
@@ -159,8 +160,6 @@ class AutheController extends Controller
     }
     public function AddNewProduct(Request $req)
     {
-        // $category = Category::all();
-        // $product = Product::all();
         $req->validate([
             'name' => 'required',
             'category' => 'required',
@@ -168,31 +167,51 @@ class AutheController extends Controller
             'price' => 'required|numeric',
             'photo' => 'required|file|image|mimes:jpg,jpeg,png',
         ]);
-        $photo = $req->file('photo');
-        $file_name = $photo->getClientOriginalName();
-        $path = 'image/';
-        $photo->move($path, $file_name);
+
 
         $datas = $req->all();
+        $datas['photo'] = $req->file('photo')->store('photo');
         Product::create([
             'name' => $datas['name'],
             'category_id' => $datas['category'],
             'detail' => $datas['detail'],
             'price' => $datas['price'],
-            'photo' => $file_name,
+            'photo' => $datas['photo'],
         ]);
 
         return redirect('manage-product');
     }
-    public function DeleteProduct($id)
+    public function DeleteProduct(Product $product)
     {
-        $product = Product::find($id);
-
-        if (isset($product)) {
-            Storage::delete('image/' . $product->photo);
-            $product->delete();
-        }
-
+        Storage::delete($product->photo);
+        $product->delete();
         return redirect()->back();
+    }
+    public function Update($id)
+    {
+        $product = Product::where('id', '=', $id)->first();
+        $category = Category::all();
+        return view('update-product', ['category' => $category, 'id' => $id, 'product' => $product]);
+    }
+    public function UpdateProduct(Product $product, Request $req)
+    {
+        $req->validate([
+            'name' => 'required',
+            'category' => 'required',
+            'detail' => 'required',
+            'price' => 'required|numeric',
+            'photo' => 'required|file|image|mimes:jpg,jpeg,png',
+        ]);
+        $req->all();
+        $product->name = $req->name;
+        $product->category_id = $req->category;
+        $product->detail = $req->detail;
+        $product->price = $req->price;
+        if ($req->file('photo')) {
+            Storage::delete($req->photos);
+            $product->photo = $req->file('photo')->store('photo');
+        }
+        $product->save();
+        return redirect('manage-product');
     }
 }

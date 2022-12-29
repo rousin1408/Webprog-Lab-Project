@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('page_name', 'new-product-detail')
+@section('page_name', 'Update')
 @section('content')
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
@@ -14,7 +14,7 @@
         <div class="container pl-4 pr-4" style="background-color: none">
             <div class="row pt-3" style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
                 <h2 class="pb-2">
-                    <b>Add new product</b>
+                    <b>Update Product</b>
                 </h2>
             </div>
             <div class="row pt-3 pb-3">
@@ -28,21 +28,21 @@
             </div>
             <div class="row">
                 <div class="col">
-                    {{-- form new product --}}
-                    <form action="{{ url('/add-new-product') }}" method="POST"
+                    {{-- form update product --}}
+                    <form action="/manage-product/updated/{{ $product->id }}" method="POST"
                         style="color:white"enctype="multipart/form-data">
+                        @method('put')
                         @csrf
                         <div class="form-floating mb-3">
                             <input type="name" class="form-control" id="floatingInput" placeholder="Name" name="name"
-                                value="{{ old('name') }}">
+                                value="{{ old('name', $product->name) }}">
                             <label for="floatingInput" style="color:black">Name</label>
                             @if ($errors->has('name'))
-                                <span class="text-danger">{{ $errors->first('name') }}</span>
+                                <span class="text-danger">{{ old('name', $product->name) }}</span>
                             @endif
                         </div>
                         {{-- file gambar --}}
                         <div class="mb-3">
-                            {{-- <label for="formFile" class="form-label">Default file input example</label> --}}
                             <input class="form-control" type="file" id="formFile" name="photo">
                             @if ($errors->has('photo'))
                                 <span class="text-danger">{{ $errors->first('photo') }}</span>
@@ -57,38 +57,45 @@
                             <select class="custom-select" id="inputGroupSelect01" name="category">
                                 <option selected>No Category Choose</option>
                                 @foreach ($category as $c)
-                                    @if (old('category') == $c->id)
-                                        <option value="{{ $c->id }}" selected> {{ $c->name }}
-                                        </option>
+                                    @if (old('category') != '')
+                                        @if (old('category') == $c->id)
+                                            <option value="{{ $c->id }}" selected> {{ $c->name }} </option>
+                                        @else
+                                            <option value="{{ $c->id }}"> {{ $c->name }} </option>
+                                        @endif
                                     @else
-                                        <option value="{{ $c->id }}"> {{ $c->name }} </option>
+                                        @if ($product->category_id == $c->id)
+                                            <option value="{{ $c->id }}" selected> {{ $c->name }} </option>
+                                        @else
+                                            <option value="{{ $c->id }}"> {{ $c->name }} </option>
+                                        @endif
                                     @endif
                                 @endforeach
-                            
                             </select>
                         </div>
 
                         {{-- detail --}}
                         <div class="form-floating mb-3">
 
-                            <textarea class="form-control" id="floatingInput" rows="7" name="detail">{{ old('detail') }}</textarea>
+                            <textarea class="form-control" id="floatingInput" rows="7" name="detail">{{ old('detail', $product->detail) }}</textarea>
                             <label for="floatingInput" style="color:black">Detail</label>
                             @if ($errors->has('detail'))
-                                <span class="text-danger">{{ $errors->first('detail') }}</span>
+                                <span class="text-danger">{{ old('detail', $product->detail) }}</span>
                             @endif
                         </div>
                         {{-- Price --}}
                         <div class="input-group mb-3">
                             <span class="input-group-text">Rp</span>
                             <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)"
-                                name="price" value="{{ old('price') }}" placeholder="Price">
+                                name="price" value="{{ old('price', $product->price) }}" placeholder="Price">
                             {{-- <span class="input-group-text">.00</span> --}}
                         </div>
                         {{-- submit --}}
                         <div class="mb-3">
                             <div class="input-group">
                                 <button type="submit" class="btn btn-primary fw-bold shadow"
-                                    style="width:25%; background-color:#757575; border:none;">Submit</button>
+                                    style="width:25%; background-color:#757575; border:none;">Update</button>
+                                <input type="hidden" name="photos" value="{{ $product->photo }}">
                             </div>
                         </div>
                     </form>
