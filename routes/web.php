@@ -59,9 +59,12 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/manage-product/delete/{id}', [AutheController::class, 'DeleteProduct']);
 });
 
-Route::middleware(['auth', 'user'])->group(function () {
+// Route::middleware(['auth', 'user'])->group(function () {
 
-    // route cart
+//     // route cart
 
-    Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
-});
+//     Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
+// });
+
+// route cart
+Route::get('/cart', [AutheController::class, 'cart'])->name('cart');

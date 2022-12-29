@@ -14,7 +14,7 @@
         <div class="container" style="background-color: none">
             <div class="row pt-3 pb-3">
                 {{-- search bar --}}
-                <div class="col">
+                <div class="col-4">
                     <div class="input-group" style="">
                         <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
                             aria-describedby="search-addon" />
@@ -23,64 +23,81 @@
                         </button>
                     </div>
                 </div>
-                <div class="col">
-                    {{-- empty col to seperate search bar and add button --}}
-                </div>
-                {{-- add product button --}}
-                <div class="col-3">
-                    <div class="input-group">
-                        <button type="submit" class="btn btn-primary fw-bold shadow"
-                            style="width:100%; background-color:#757575; border:none;">Add product</button>
-                    </div>
-                </div>
+
             </div>
         </div>
 
-        {{-- start looping item disini --}}
-        @foreach ($product as $p)
-            {{-- start card --}}
-            <div class="container p-4 shadow" style="color: white">
-                <div class="row">
-                    {{-- kolom foto --}}
-                    <div class="col-3">
-                        <div class="img-box" style="width: 100%;">
-                            <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}" class="img-fluid"
-                                alt="" style="border-radius: 15px">
-                        </div>
-                    </div>
-                    <div class="col-6 mr-2" style="">
-                        {{-- nama barang --}}
-                        <h4 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
-                            <b>{{ $p->name }}</b>
-                        </h4>
-                        {{-- kategori --}}
-                        <p>Category: {{ $p->category }}</p>
-                        {{-- harga --}}
-                        <p>Price: {{ $p->price }}</p>
-                        {{-- deskripsi / detail --}}
-                        <p>Description:</p>
-                        <p>{{ $p->detail }}.</p>
-                    </div>
-
-                    {{-- box opsi --}}
-                    <div class="col pt-4">
-                        <div class="container pt-4 pb-4" style="background-color:#795548">
-                            {{-- button qty --}}
-                            <form action="">
-
-                                <div class="input-group">
-                                    {{-- button submit --}}
-                                    <button type="submit" class="btn btn-primary fw-bold shadow"
-                                        style="width: 100%; background-color:red; border:none">Delete</button>
+        <div class="container" style="background-color: rgb(121, 85, 72)">
+            <div class="row" style="">
+                <div class="col" style="">
+                    {{-- start looping item disini --}}
+                    @foreach ($product as $p)
+                    {{-- start card --}}
+                    <div class="container p-4 shadow" style="color: white;">
+                        <div class="row">
+                            {{-- kolom foto --}}
+                            <div class="col-3">
+                                <div class="img-box" style="width: 100%;">
+                                    <img src="{{ \Illuminate\Support\Facades\URL::asset('image/' . $p->photo) }}" class="img-fluid"
+                                        alt="" style="border-radius: 15px">
                                 </div>
-                            </form>
+                            </div>
+                            <div class="col-8 mr-2" style="">
+                                {{-- nama barang --}}
+                                <h4 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
+                                    <b>{{ $p->name }}</b>
+                                </h4>
+                                {{-- harga --}}
+                                <p><b>Price:</b> Rp{{ $p->price }}</p>
+                                {{-- Qty --}}
+                                <p><b>Quantity:</b> {{ $p->category_id }}</p>
+                                {{-- subprice    --}}
+                                <p><b>Subprice:</b> Rp100.000</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-10">
+                                {{-- empty col --}}
+                            </div>
+                            <div class="col">
+                                <form action="">
+                                    <div class="input-group">
+                                        {{-- button delete --}}
+                                        <button type="submit" class="btn btn-primary fw-bold shadow"
+                                            style="width:100%; background-color:red; border:none">Delete</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                    {{-- end card --}}
+                    @endforeach
+                    {{-- end looping item --}}
+                </div>
+                <div class="col-4">
+                    {{-- ringkasan belanja --}}
+                    <div class="container sticky-top pt-3 pb-3" style="color: white">
+                        <h3 class="fw-bold pb-2 mb-4" style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
+                            Shopping summary
+                        </h3>
+
+                        <h5 class="fw-bold mb-4">
+                            Total price: Rp1.000.000
+                        </h5>
+
+                        <form action="">
+                            <div class="input-group">
+                                {{-- button submit --}}
+                                <button type="submit" class="btn btn-primary fw-bold shadow"
+                                    style="width: 100%; background-color:green; border:none">Purchase</button>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
             </div>
-            {{-- end card --}}
-        @endforeach
-        {{-- end looping item --}}
+        </div>
     </body>
+
     <li><a class="dropdown-item" href="{{ url('logout') }}">Logout</a></li>
 @endsection

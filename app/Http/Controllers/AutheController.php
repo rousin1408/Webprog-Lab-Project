@@ -140,6 +140,8 @@ class AutheController extends Controller
         // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
     }
+    
+    // cart
     public function cart()
     {
         $category = Category::all();

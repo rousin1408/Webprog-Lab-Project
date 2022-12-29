@@ -20,40 +20,40 @@ class ProductSeeder extends Seeder
         DB::table('product')->insert([
             // 'id' => 1,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'aazz',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty1.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 2,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'aabb',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty2.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 3,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'bbcc',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty3.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 4,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'ccdd',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty4.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 5,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'ddee',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty5.jpg',
         ]);
@@ -61,98 +61,96 @@ class ProductSeeder extends Seeder
         DB::table('product')->insert([
             // 'id' => 6,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'eeff',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty6.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 7,
             'category_id' => 1,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'ffgg',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'beauty7.jpg',
         ]);
-        // DB::table('product')->insert([
-        //     // 'id' => 8,
-        //     'category_id' => 1,
-        //     'name' => 'lorem',
-        //     'category' => 'Beauty',
-        //     'detail' => 'lorem',
-        //     'price' => '20.000',
-        //     'photo' => 'beauty8.jpg',
-        // ]);
+
+        DB::table('product')->insert([
+            // 'id' => 8,
+            'category_id' => 1,
+            'name' => 'gghh',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
+            'price' => '20.000',
+            'photo' => 'beauty8.jpg',
+        ]);
 
         // kategori kamera
 
         DB::table('product')->insert([
             // 'id' => 9,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'hhii',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera1.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 7,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'iijj',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera2.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 8,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'jjkk',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera3.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 9,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'kkll',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera4.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 10,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'llmm',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera5.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 10,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'mmnn',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera6.jpg',
         ]);
         DB::table('product')->insert([
             // 'id' => 10,
             'category_id' => 2,
-            'name' => 'lorem',
-            'detail' => 'lorem',
+            'name' => 'nnoo',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
             'price' => '20.000',
             'photo' => 'camera7.jpg',
         ]);
-        // DB::table('product')->insert([
-        //     // 'id' => 10,
-        //     'category_id' => 2,
-        //     'name' => 'lorem',
-        //     'category' => 'Camera',
-        //     'detail' => 'lorem',
-        //     'price' => '20.000',
-        //     'photo' => 'camera8.jpg',
-        // ]);
 
-
+        DB::table('product')->insert([
+            // 'id' => 10,
+            'category_id' => 2,
+            'name' => 'oopp',
+            'detail' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, quae esse pariatur alias accusamus cupiditate aliquam! Eligendi perferendis tempore repellat inventore sunt blanditiis eos quam excepturi quas? Facilis, ratione nostrum!',
+            'price' => '20.000',
+            'photo' => 'camera8.jpg',
+        ]);
 
     }
 }
