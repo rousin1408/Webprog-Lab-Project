@@ -2,6 +2,7 @@
 
 @section('page_name', 'register')
 @section('content')
+
     <div class="body">
         {{-- uncomment div di bawah ini untuk memunculkan background coklat gelap, uncomment juga closure tag di paling bawah --}}
         {{-- <div class="container"> --}}

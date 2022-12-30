@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Country;
+use App\Models\DetailTransaction;
+use App\Models\HeaderTransaction;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
@@ -21,9 +23,11 @@ use Illuminate\Support\Facades\File;
 
 class AutheController extends Controller
 {
+    //Autheration
     public function login()
     {
         $category = Category::all();
+
         return view('login', ['category' => $category]);
     }
 
@@ -55,7 +59,9 @@ class AutheController extends Controller
             'country_id' => $datas['country_id'],
             'role' => 'user',
         ]);
-        return redirect('login');
+
+
+        return redirect('login')->with('message', 'Registration Success');
     }
     public function validationlogin(Request $req)
     {
@@ -87,12 +93,16 @@ class AutheController extends Controller
         }
         return redirect()->back()->withErrors('Invalid Credentials');
     }
-
     public function logout()
     {
         Auth::logout();
         return redirect('login');
     }
+
+
+
+
+    // All Role Can Access
     public function profile()
     {
         $category = Category::all();
@@ -113,8 +123,6 @@ class AutheController extends Controller
 
         return view('category', ['category' => $category,  'product' => $product, 'categories' => $categories]);
     }
-
-    // product detail
     public function productDetail($id)
     {
 
@@ -122,7 +130,6 @@ class AutheController extends Controller
         $category = Category::all();
         return view('product-detail', ['product' => $product, 'category' => $category]);
     }
-
     public function search(Request $req)
     {
 
@@ -133,7 +140,12 @@ class AutheController extends Controller
         return view('search', ['category' => $category, 'product' => $product]);
     }
 
-    // manage product
+
+
+
+
+
+    // Admin Only Can Access
     public function manageProduct()
     {
         $category = Category::all();
@@ -141,17 +153,6 @@ class AutheController extends Controller
         // dd($product);
         return view('manage-product', ['category' => $category], ['product' => $product]);
     }
-
-    // cart
-    public function cart()
-    {
-        $category = Category::all();
-        $product = Product::all();
-        // dd($product);
-        return view('cart', ['category' => $category], ['product' => $product]);
-    }
-
-    // new product
     public function NewProduct()
     {
         $category = Category::all();
@@ -179,7 +180,7 @@ class AutheController extends Controller
             'photo' => $datas['photo'],
         ]);
 
-        return redirect('manage-product');
+        return redirect('manage-product')->with('message', 'Add Product Success');
     }
     public function DeleteProduct(Product $product)
     {
@@ -212,6 +213,112 @@ class AutheController extends Controller
             $product->photo = $req->file('photo')->store('photo');
         }
         $product->save();
-        return redirect('manage-product');
+        return redirect('manage-product')->with('message', 'Update Product Success');;
+    }
+    public function Managesearch(Request $req)
+    {
+
+        $category = Category::all();
+        $name = $req->search;
+        $product = Product::where('name', 'LIKE', '%' . $name . '%')->paginate(10);
+
+        $product->appends(['search' => $name]);
+
+        return view('manage-product', ['category' => $category, 'product' => $product]);
+    }
+
+
+
+
+
+
+
+
+    // User Only Can Access
+    public function cart()
+    {
+        $category = Category::all();
+        $product = Product::all();
+        $cart = session()->get('cart', []);
+
+        return view('cart', ['category' => $category, 'cart' => $cart], ['product' => $product],);
+    }
+    public function addcart(Request $req)
+    {
+        $product_id = $req->input('product_id');
+        $quantity = $req->input('quantity');
+
+        $product = Product::find($product_id);
+
+        $cart = session()->get('cart', []);
+
+        $cart[] = [
+            'id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => $quantity,
+            'photo' => $product->photo,
+        ];
+        session()->put('cart', $cart);
+
+        session()->flash('message', 'Item Added to Cart');
+
+        return redirect('cart');
+    }
+    public function RemoveCart($id)
+    {
+        $cart = session()->get('cart', []);
+
+        foreach ($cart as $ca => $c) {
+            if ($c['id'] == $id) {
+                unset($cart[$ca]);
+                break;
+            }
+        }
+        session()->put('cart', $cart);
+
+        return redirect('cart');
+    }
+    public function purchase()
+    {
+        $cart = session('cart');
+        $total_quantity_product = 0;
+        $total_price = 0;
+
+        foreach ($cart as $c) {
+            $total_quantity_product += $c['quantity'];
+            $total_price += $c['quantity'] * $c['price'];
+        }
+        $HeaderTransaction = HeaderTransaction::create([
+            'user_id' => auth()->user()->id,
+            'date' => Carbon::now(),
+            'total_product' => $total_quantity_product,
+            'total_price' => $total_price,
+        ]);
+        $IdHeader = $HeaderTransaction->id;
+
+        foreach ($cart as $c) {
+            DetailTransaction::create([
+                'transaction_id' => $IdHeader,
+                'product_id' => $c['id'],
+                'quantity' => $c['quantity'],
+                'total_price_all' => $c['quantity'] * $c['price'],
+            ]);
+        }
+        session()->forget('cart');
+        return redirect('/home')->with('message', 'Purchase Success');;
+    }
+    public function history()
+    {
+        $category = Category::all();
+        $product = Product::all();
+        $HeaderTransaction = HeaderTransaction::all();
+
+        $HeaderTransaction = HeaderTransaction::where('user_id', '=', auth()->user()->id)->get();
+        $DetailTransaction = HeaderTransaction::whereIn('transaction_id', $HeaderTransaction->pluck('id'))->get();
+
+        $products = Product::all();
+
+        return view('history', ['category' => $category, 'DetailTransaction' => $DetailTransaction, 'transactheader' => $HeaderTransaction, 'transactionHeader' => $HeaderTransaction, 'product' => $product]);
     }
 }

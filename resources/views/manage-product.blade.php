@@ -2,7 +2,11 @@
 
 @section('page_name', 'product-detail')
 @section('content')
-
+    @if (session('message'))
+        <div class="alert alert-success alert-block">
+            <strong>{{ session('message') }}</strong>
+        </div>
+    @endif
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -12,15 +16,21 @@
     <div class="container" style="background-color: none">
         <div class="row pt-3 pb-3">
             {{-- search bar --}}
+
             <div class="col">
-                <div class="input-group" style="">
-                    <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
-                        aria-describedby="search-addon" />
-                    <button type="button" class="btn btn-outline-secondary" style="border-color:white">
-                        <i class="fa fa-search" style="color: white"></i>
-                    </button>
-                </div>
+                <form action="{{ route('manageSearch') }}" method="GET">
+                    <div class="input-group" style="">
+
+                        <input type="search" class="form-control rounded px-2" placeholder="Search" aria-label="Search"
+                            aria-describedby="search-addon" name="search" />
+                        <button type="button" class="btn btn-outline-secondary" style="border-color:white">
+                            <i class="fa fa-search" style="color: white"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
+
+
             <div class="col">
                 {{-- empty col to seperate search bar and add button --}}
             </div>
@@ -65,26 +75,24 @@
                     <div class="container pt-4 pb-4" style="background-color:#795548;">
                         {{-- button qty --}}
                         <div class="row">
-                            <div class="col-sm-12 text-center">
+                            <div class="text-center" style="color: white">
 
                                 <a href="{{ route('update', ['id' => $p->id]) }}"
-                                    class="btn btn-warning btn-md center-block"
-                                    style="width: 50px;display: inline-block!important;
-                                vertical-align: top!important;"
-                                    type="submit"><i class="fa fa-edit"
-                                        style="font-size:20px;padding:6px 3px;color:rgb(255, 255, 255)"></i></a>
-                                <form action="/manage-product/delete/{{ $p->id }}" method="post">
-                                    @method('delete')
-                                    @csrf
-                                    <button class="btn btn-danger btn-md center-block"
-                                        style="width: 50px;padding:10px 5px;display: inline-block!important;
-                                vertical-align: top!important;"
-                                        type="submit"><i class="fa fa-trash-o"
-                                            style="font-size:23px;color:white"></i></button>
-                                </form>
-
+                                    class="btn btn-warning btn-md center-block" style="width: 200px;padding:10px 5px; color:white"
+                                    type="submit">Edit</a>
+                                <div style="padding-top:30px">
+                                    <form action="/manage-product/delete/{{ $p->id }}" method="post">
+                                        @method('delete')
+                                        @csrf
+                                        <button class="btn btn-danger btn-md center-block"
+                                            style="width: 200px;padding:10px 5px;display: inline-block!important;
+                                            vertical-align: top!important;"
+                                            type="submit">Delete</button>
+                                    </form>
+                                </div>
 
                             </div>
+
                         </div>
 
                     </div>
@@ -94,6 +102,7 @@
         {{-- end card --}}
     @endforeach
     {{-- end looping item --}}
+    {{-- {{ $product->links() }} --}}
 
 
 @endsection

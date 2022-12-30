@@ -24,13 +24,9 @@ Route::get('/search', [AutheController::class, 'search']);
 
 // route product detail
 Route::get('/', [AutheController::class, 'home'])->name('home');
+Route::get('/home', [AutheController::class, 'home'])->name('home');
 Route::get('/product-detail/{id}', [AutheController::class, 'productDetail']);
 Route::get('/category/{name}', [AutheController::class, 'category']);
-
-
-
-
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [AutheController::class, 'profile'])->name('profile');
@@ -62,14 +58,17 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
     Route::get('/manage-product/update/{id}', [AutheController::class, 'Update'])->name('update');
     Route::put('/manage-product/updated/{product}', [AutheController::class, 'UpdateProduct']);
+
+    Route::get('/manage-product/search', [AutheController::class, 'manageSearch'])->name('manageSearch');
 });
 
-// Route::middleware(['auth', 'user'])->group(function () {
+Route::middleware(['auth', 'user'])->group(function () {
 
-//     // route cart
 
-//     Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
-// });
 
-// route cart
-Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
+    Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
+    Route::post('/cart/{product}', [AutheController::class, 'addcart']);
+    Route::get('/cart/delete/{id}', [AutheController::class, 'RemoveCart']);
+    Route::post('/purchase', [AutheController::class, 'purchase']);
+    Route::get('/history', [AutheController::class, 'history']);
+});

@@ -13,48 +13,51 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 
     @if (Illuminate\Support\Facades\Auth::check() && Illuminate\Support\Facades\Auth::user()->role == 'user')
+        <form method="POST" action="/cart/{{ $product->id }}">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-        <body style="background-color: #795548">
-            {{-- start card --}}
-            <div class="container p-4 pb-5 shadow" style="color: white">
-                <div class="row mb-3">
-                    <div class="col">
-                        {{-- nama --}}
-                        <h2>
-                            <b>{{ $product->name }}</b>
-                        </h2>
-                    </div>
-                </div>
-                <div class="row">
-                    {{-- foto --}}
-                    <div class="col-4">
-                        <div class="img-box" style="width: 100%;">
-                            <img src={{ asset('storage/' . $product->photo) }} class="img-fluid" alt=""
-                                style="border-radius: 15px">
+            <body style="background-color: #795548">
+                {{-- start card --}}
+                <div class="container p-4 pb-5 shadow" style="color: white">
+                    <div class="row mb-3">
+                        <div class="col">
+                            {{-- nama --}}
+                            <h2>
+                                <b>{{ $product->name }}</b>
+                            </h2>
                         </div>
                     </div>
-                    <div class="col-5 mr-2" style="">
-                        <h3 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
-                            <b>Details</b>
-                        </h3>
-                        {{-- kategori --}}
-                        <p>Category: {{ $product->category->name }}</p>
-                        {{-- deskripsi / detail --}}
-                        <p>Description:</p>
-                        <p>{{ $product->detail }}</p>
-                    </div>
+                    <div class="row">
+                        {{-- foto --}}
+                        <div class="col-4">
+                            <div class="img-box" style="width: 100%;">
+                                <img src={{ asset('storage/' . $product->photo) }} class="img-fluid" alt=""
+                                    style="border-radius: 15px">
+                            </div>
+                        </div>
+                        <div class="col-5 mr-2" style="">
+                            <h3 class="pb-2"style="border-bottom: 1pt solid rgba(255, 255, 255, 0.5)">
+                                <b>Details</b>
+                            </h3>
+                            {{-- kategori --}}
+                            <p>Category: {{ $product->category->name }}</p>
+                            {{-- deskripsi / detail --}}
+                            <p>Description:</p>
+                            <p>{{ $product->detail }}</p>
+                        </div>
 
-                    <div class="col">
-                        {{-- box buat beli barang --}}
-                        <div class="container pt-5 pb-5 shadow" style="background-color:#795548">
+                        <div class="col">
+                            {{-- box buat beli barang --}}
+                            <div class="container pt-5 pb-5 shadow" style="background-color:#795548">
 
-                            {{-- harga --}}
-                            <h4 class="mb-4">
-                                <b>Price: Rp.{{ $product->price }}</b>
-                            </h4>
-                            {{-- button qty --}}
+                                {{-- harga --}}
+                                <h4 class="mb-4">
+                                    <b>Price: Rp.{{ $product->price }}</b>
+                                </h4>
+                                {{-- button qty --}}
 
-                            <form action="">
+
                                 <div class="input-group mb-3">
                                     <h6 class="mr-3">Quantity:</h6>
                                     {{-- button minus --}}
@@ -63,7 +66,8 @@
                                     {{-- text quantity --}}
                                     <input id="number" value="0" onkeyup="validate()"
                                         class="form-control  form-control-sm"
-                                        aria-label="Example text with two button addons" style="text-align: center">
+                                        aria-label="Example text with two button addons" style="text-align: center"
+                                        name="quantity">
                                     {{-- button plus --}}
                                     <button class="btn btn-sm btn-outline-secondary" type="button" onclick="tambah()"
                                         style="background-color:#757575; color:white">+</button>
@@ -73,12 +77,12 @@
                                     <button type="submit" class="btn btn-primary mb-3 fw-bold shadow"
                                         style="width: 100%; background-color:#757575; border:none">Add to cart</button>
                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {{-- end card --}}
+        </form>
+        </div>
+        </div>
+        </div>
+        </div>
+        {{-- end card --}}
         </body>
     @else
 

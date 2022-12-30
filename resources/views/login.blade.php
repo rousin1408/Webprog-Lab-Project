@@ -2,7 +2,13 @@
 
 @section('page_name', 'login')
 
+
 @section('content')
+    @if (session('message'))
+        <div class="alert alert-success alert-block">
+            <strong>{{ session('message') }}</strong>
+        </div>
+    @endif
     <div class="body">
         {{-- uncomment div di bawah ini untuk memunculkan background coklat gelap, uncomment juga closure tag di paling bawah --}}
         {{-- <div class="container"> --}}
