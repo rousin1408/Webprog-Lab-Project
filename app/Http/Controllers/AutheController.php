@@ -321,4 +321,9 @@ class AutheController extends Controller
 
         return view('history', ['category' => $category, 'DetailTransaction' => $DetailTransaction, 'transactheader' => $HeaderTransaction, 'transactionHeader' => $HeaderTransaction, 'product' => $product]);
     }
+
+    public function historyDummy(){
+        $category = Category::all();
+        return view('/history', ['category' => $category]);
+    }
 }

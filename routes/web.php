@@ -64,11 +64,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
 
 Route::middleware(['auth', 'user'])->group(function () {
 
-
-
     Route::get('/cart', [AutheController::class, 'cart'])->name('cart');
     Route::post('/cart/{product}', [AutheController::class, 'addcart']);
     Route::get('/cart/delete/{id}', [AutheController::class, 'RemoveCart']);
     Route::post('/purchase', [AutheController::class, 'purchase']);
-    Route::get('/history', [AutheController::class, 'history']);
+    // Route::get('/history', [AutheController::class, 'history']);
 });
+
+Route::get('/history', [AutheController::class, 'historyDummy']);
