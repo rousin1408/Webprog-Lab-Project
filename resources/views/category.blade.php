@@ -47,9 +47,9 @@
                                         class="img-fluid" alt="">
                                 </div>
                                 <div class="thumb-content">
-                                    <h4>{{ $p->category->name }}</h4>
+                                    <h4>{{ $p->name }}</h4>
 
-                                    <p class="item-price">IDR{{ $p->price }}</p>
+                                    <p class="item-price">IDR {{ $p->price }}</p>
 
                                 </div>
                             </div>

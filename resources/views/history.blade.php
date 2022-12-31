@@ -1,6 +1,6 @@
 @extends('template.template')
 
-@section('page_name', 'transaction')
+@section('page_name', 'History')
 @section('content')
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">

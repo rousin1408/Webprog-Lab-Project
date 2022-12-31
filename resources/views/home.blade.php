@@ -52,7 +52,7 @@
                                             {{-- nama --}}
                                             <h4>{{ $p->name }}</h4>
                                             {{-- harga --}}
-                                            <p class="item-price">IDR{{ $p->price }}</p>
+                                            <p class="item-price">IDR {{ $p->price }}</p>
                                         </div>
                                     </div>
                                 </a>
