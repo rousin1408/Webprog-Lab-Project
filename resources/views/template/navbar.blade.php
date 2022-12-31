@@ -72,7 +72,7 @@
                                 <a class="dropdown-item" href="/profile">Profile</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="">History</a>
+                                <a class="dropdown-item" href="/history">History</a>
                             </li>
                             <li>
                                 <form action="/logout" method="POST">

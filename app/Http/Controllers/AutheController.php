@@ -315,15 +315,15 @@ class AutheController extends Controller
         $HeaderTransaction = HeaderTransaction::all();
 
         $HeaderTransaction = HeaderTransaction::where('user_id', '=', auth()->user()->id)->get();
-        $DetailTransaction = HeaderTransaction::whereIn('transaction_id', $HeaderTransaction->pluck('id'))->get();
+        $DetailTransaction = DetailTransaction::whereIn('transaction_id', $HeaderTransaction->pluck('id'))->get();
 
-        $products = Product::all();
+        $product = Product::all();
 
-        return view('history', ['category' => $category, 'DetailTransaction' => $DetailTransaction, 'transactheader' => $HeaderTransaction, 'transactionHeader' => $HeaderTransaction, 'product' => $product]);
+        return view('history', ['category' => $category, 'DetailTransaction' => $DetailTransaction,  'HeaderTransaction' => $HeaderTransaction, 'product' => $product]);
     }
 
-    public function historyDummy(){
-        $category = Category::all();
-        return view('/history', ['category' => $category]);
-    }
+    // public function historyDummy(){
+    //     $category = Category::all();
+    //     return view('/history', ['category' => $category]);
+    // }
 }
