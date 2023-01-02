@@ -102,9 +102,7 @@
         {{-- end card --}}
     @endforeach
     {{-- end looping item --}}
-    <div class="container shadow-none bg-transparent" style="">
+    <div class="container shadow-none bg-transparent" style="padding:0">
             {{ $product->links() }}
     </div>
-
-
 @endsection
